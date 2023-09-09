@@ -1021,7 +1021,7 @@ iframe {
 /******************************************* CONTACT-CSS-START ************************************************/
 
 .contact-us-background {
-    background-image: url(/main-img/contact/background.jpg);
+    background-image: url(../img/contact/background.jpg);
     background-position: bottom;
     background-size: cover;
     width: 100%;

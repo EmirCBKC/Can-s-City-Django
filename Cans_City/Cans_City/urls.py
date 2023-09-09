@@ -20,5 +20,11 @@ from appMy.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',index,name="home")
+    path('home/', home, name="home"),
+    path('about/', about, name="about"),
+    path('contact/', contact, name="contact"),
+    path('detail/', detail, name="detail"),
+    path('pc/', pc, name="pc"),
+    path('ps5/', ps5, name="ps5"),
+    path('xbox/', xbox, name="xbox")
 ]
