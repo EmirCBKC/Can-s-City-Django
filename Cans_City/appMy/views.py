@@ -1,24 +1,50 @@
 from django.shortcuts import render
+from .models import *
 
 # Create your views here.
+
 
 def home(request):
     return render(request, 'home.html')
 
+
 def about(request):
     return render(request, 'about.html')
+
 
 def contact(request):
     return render(request, 'contact.html')
 
+
 def detail(request):
     return render(request, 'detail.html')
 
+
 def pc(request):
-    return render(request, 'pc.html')
+    pc = Game.objects.filter(platform=1)
+
+    context = {
+        'pc': pc,
+    }
+
+    return render(request, 'pc.html', context)
+
 
 def ps5(request):
-    return render(request, 'ps5.html')
+    ps5 = Game.objects.filter(platform=2)
+
+    context = {
+        'ps5': ps5,
+    }
+
+    return render(request, 'ps5.html', context)
+
 
 def xbox(request):
-    return render(request, 'xbox.html')
+    xbox = Game.objects.filter(platform=3)
+
+    context = {
+        'xbox': xbox,
+    }
+
+    return render(request, 'xbox.html', context)

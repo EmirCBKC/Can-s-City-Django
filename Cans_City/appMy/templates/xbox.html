@@ -19,7 +19,9 @@
 
     <div class="xbox-content p-3">
         <div id="xbox" class="xbox-row p-5 row">
-
+            {% for game in xbox %}
+            <h1>{{game.title}}</h1>
+            {% endfor %}
         </div>
     </div>
 

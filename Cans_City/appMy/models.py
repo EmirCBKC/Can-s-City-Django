@@ -2,3 +2,41 @@ from django.db import models
 
 # Create your models here.
 
+
+class Platform (models.Model):
+    title = models.CharField(
+        ("Platform"), max_length=50, null=True, blank=True)
+    def __str__(self) -> str:
+        return self.title
+
+
+class Edition (models.Model):
+    title = models.CharField(("Edition"), max_length=50, null=True, blank=True)
+    def __str__(self) -> str:
+        return self.title
+
+
+class Game (models.Model):
+    title = models.CharField(("Game Name"), max_length=50)
+    platform = models.ForeignKey(Platform, verbose_name=(
+        "Platform"), on_delete=models.CASCADE, null=True, blank=True)
+    edition = models.ForeignKey(Edition, verbose_name=(
+        "Edition"), on_delete=models.CASCADE, null=True, blank=True)
+    editionImage = models.ImageField(
+        ("Edition Image"), upload_to='media/background_images/', height_field=None, width_field=None, max_length=None, null=True, blank=True)
+    backgroundImage = models.ImageField(
+        ("Background Image"), upload_to='media/background_images/', height_field=None, width_field=None, max_length=None, null=True, blank=True)
+    iframe = models.CharField(("Iframe"), max_length=100, null=True, blank=True)
+    leftPng = models.ImageField(("Left Png"), upload_to='media/background_images/',
+                                height_field=None, width_field=None, max_length=None, null=True, blank=True)
+    rightPng = models.ImageField(("Right Png"), upload_to='media/background_images/',
+                                 height_field=None, width_field=None, max_length=None, null=True, blank=True)
+    pngShadowColor = models.CharField(
+        ("Png Shadow Color"), max_length=50, null=True, blank=True)
+    aboutImage = models.ImageField(("About Image"), upload_to='media/background_images/',
+                                   height_field=None, width_field=None, max_length=None, null=True, blank=True)
+    about = models.CharField(("About"), max_length=200, null=True, blank=True)
+    price = models.PositiveIntegerField(
+        ("Price"), default=0, null=True, blank=True)
+    def __str__(self) -> str:
+        return self.title

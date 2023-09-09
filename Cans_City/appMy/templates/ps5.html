@@ -19,7 +19,9 @@
 
     <div class="ps5-content p-3">
         <div id="ps5" class="ps5-row p-5 row">
-
+            {% for game in ps5 %}
+            <h1>{{game.title}}</h1>
+            {% endfor %}
         </div>
     </div>
 
