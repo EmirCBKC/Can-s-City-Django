@@ -39,4 +39,4 @@ class Game (models.Model):
     price = models.PositiveIntegerField(
         ("Price"), default=0, null=True, blank=True)
     def __str__(self) -> str:
-        return self.title
+        return str(self.platform) + " - " + self.title + " - " + str(self.edition)
