@@ -7,7 +7,7 @@
 <div class="xbox-background d-flex justify-content-center flex-column align-items-center">
     <div data-aos="fade-up">
         <div class="header">
-            <img src="/main-img/xbox/background.jpg" width="100%" height="100%">
+            <img src="{% static 'img/xbox-bg/background.jpg' %}" width="100%" height="100%">
         </div>
     </div>
 
@@ -20,7 +20,17 @@
     <div class="xbox-content p-3">
         <div id="xbox" class="xbox-row p-5 row">
             {% for game in xbox %}
-            <h1>{{game.title}}</h1>
+            <div class="mt-5 mb-5 col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="pc-game d-flex flex-column align-items-center">
+                    <div class="p-4 d-flex flex-column align-items-center">
+                        <img src="{{game.editionImage.url}}" alt="Edition Image" width="100%" height="400px">
+                        <h1 class="text-center mt-2">{{game.title}}</h1>
+                        <h2 class="text-center price mt-2"></h2>
+                        <a href="" class="btn btn-light mt-2">${{game.price}}</a>
+                        <button id="" class="add-basket mt-2">Add Basket</button>
+                    </div>
+                </div>
+            </div>
             {% endfor %}
         </div>
     </div>

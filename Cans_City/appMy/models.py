@@ -23,17 +23,17 @@ class Game (models.Model):
     edition = models.ForeignKey(Edition, verbose_name=(
         "Edition"), on_delete=models.CASCADE, null=True, blank=True)
     editionImage = models.ImageField(
-        ("Edition Image"), upload_to='media/background_images/', height_field=None, width_field=None, max_length=None, null=True, blank=True)
+        ("Edition Image"), upload_to='background_images/', height_field=None, width_field=None, max_length=None, null=True, blank=True)
     backgroundImage = models.ImageField(
-        ("Background Image"), upload_to='media/background_images/', height_field=None, width_field=None, max_length=None, null=True, blank=True)
+        ("Background Image"), upload_to='background_images/', height_field=None, width_field=None, max_length=None, null=True, blank=True)
     iframe = models.CharField(("Iframe"), max_length=100, null=True, blank=True)
-    leftPng = models.ImageField(("Left Png"), upload_to='media/background_images/',
+    leftPng = models.ImageField(("Left Png"), upload_to='background_images/',
                                 height_field=None, width_field=None, max_length=None, null=True, blank=True)
-    rightPng = models.ImageField(("Right Png"), upload_to='media/background_images/',
+    rightPng = models.ImageField(("Right Png"), upload_to='background_images/',
                                  height_field=None, width_field=None, max_length=None, null=True, blank=True)
     pngShadowColor = models.CharField(
         ("Png Shadow Color"), max_length=50, null=True, blank=True)
-    aboutImage = models.ImageField(("About Image"), upload_to='media/background_images/',
+    aboutImage = models.ImageField(("About Image"), upload_to='background_images/',
                                    height_field=None, width_field=None, max_length=None, null=True, blank=True)
     about = models.CharField(("About"), max_length=200, null=True, blank=True)
     price = models.PositiveIntegerField(
