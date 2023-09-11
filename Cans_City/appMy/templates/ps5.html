@@ -14,7 +14,9 @@
     <div class="ps5-filter d-flex justify-content-around align-items-center mt-5 mb-5">
         <button id="lowPs5" class="btn btn-danger">Low Price$</button>
         <button id="highPs5" class="btn btn-danger">High Price$</button>
-        <input id="ps5_search" class="text-center" type="text" placeholder="search">
+        <form role="search" method="GET">
+            <input id="ps5_search" name="searchInput" class="text-center" type="search" placeholder="search">
+        </form>
     </div>
 
     <div class="ps5-content p-3">

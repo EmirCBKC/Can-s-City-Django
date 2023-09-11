@@ -33,16 +33,16 @@ def detail(request, id):
 
 def pc(request):
     pc = Game.objects.filter(platform=1, edition=1)
-    query = request.GET.get("searchInput")
     low = request.GET.get("low")
     high = request.GET.get("high")
+    query = request.GET.get("searchInput")
 
     if query:
         pc = pc.filter(Q(title__icontains=query)).distinct
 
     if low:
         pc = pc.order_by('-price')
-        
+
     if high:
         pc = pc.order_by('price')
 
@@ -55,6 +55,10 @@ def pc(request):
 
 def ps5(request):
     ps5 = Game.objects.filter(platform=2, edition=1)
+    query = request.GET.get("searchInput")
+
+    if query:
+        ps5 = ps5.filter(Q(title__icontains=query)).distinct
 
     context = {
         'ps5': ps5,
@@ -65,6 +69,10 @@ def ps5(request):
 
 def xbox(request):
     xbox = Game.objects.filter(platform=3, edition=1)
+    query = request.GET.get("searchInput")
+
+    if query:
+        xbox = xbox.filter(Q(title__icontains=query)).distinct
 
     context = {
         'xbox': xbox,

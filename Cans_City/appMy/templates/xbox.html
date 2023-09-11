@@ -14,7 +14,9 @@
     <div class="xbox-filter d-flex justify-content-around align-items-center mt-5 mb-5">
         <button id="lowXbox" class="btn btn-danger">Low Price$</button>
         <button id="highXbox" class="btn btn-danger">High Price$</button>
-        <input id="xbox_search" class="text-center" type="text" placeholder="search">
+        <form role="search" method="GET">
+            <input id="xbox_search" name="searchInput" class="text-center" type="search" placeholder="search">
+        </form>
     </div>
 
     <div class="xbox-content p-3">
