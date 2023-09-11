@@ -6,8 +6,56 @@
 
 <div class="profile-background d-flex justify-content-center flex-column align-items-center">
     <div class="profile-content d-flex flex-column align-items-center">
-
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h5>{{request.user.first_name}} {{request.user.last_name}}</h5>
+            {% if profil.profileImg %}
+            <img src="{{ profil.profileImg.url }}" alt="Profile Image"
+                class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+            {% else %}
+            <img src="" alt="Profile Image"
+                class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+            {% endif %}
+            <div class="d-flex justify-content-center align-items-center">
+                <input class="prf_img" name="image" type="file"
+                    style="display: none; z-index: 1; background: transparent;">
+                <button class="prf_img" id="img-save" style="display: none;"
+                    name="profil-img-btn" type="submit" class="btn btn-success">Save</button>
+            </div>
+        </form>
+        <button type="button" class="btn btn-warning mt-2" style="width: 40%;"
+            data-mdb-ripple-color="dark" style="z-index: 1;" id="profil-btn"
+            onclick="aktiflestir()">
+            Profili Düzenle
+        </button>
+        <form class="p-4" method="POST" style="background-color: #f8f9fa;">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-6 d-flex justify-content-between">
+                    <label for="username">Username</label>
+                    <input class="edit-profil" type="text" name="username" id="username" disabled
+                        value="{{request.user.username}}">
+                </div>
+                <div class="col-6">
+                    <label class="me-4" for="firstName">Name</label>
+                    <input class="edit-profil" type="text" name="firstName" id="firstName" disabled
+                        value="{{request.user.first_name}}">
+                </div>
+                <div class="col-6 mt-4 d-flex justify-content-between">
+                    <label for="lastName">Surname</label>
+                    <input class="edit-profil" type="text" name="lastName" id="lastName" disabled
+                        value="{{request.user.last_name}}">
+                </div>
+                <div class="col-6 mt-4">
+                    <label for="email">E-mail</label>
+                    <input class="edit-profil" type="email" name="email" id="email" disabled
+                        value="{{request.user.email}}">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-dark mt-4" name="save" style="display: none;">Save</button>
+        </form>
     </div>
+</div>
 </div>
 
 {% endblock body %}

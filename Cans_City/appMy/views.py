@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from .models import *
 from django.db.models import Q
 from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -143,3 +144,27 @@ def logoutt(request):
     logout(request)
     
     return redirect('/')
+
+@login_required
+def profile(request):
+    
+    profile=Profil.objects.get(user_id=request.user)
+    
+    if request.method=="POST" and 'profileImg-btn' in request.POST:
+        filee=request.FILES.get("image")
+        
+        if filee:
+            profile.profileImg=filee
+            profile.save()
+            
+            context={
+                'profile':profile
+            }
+            
+            return render(request,'profile.html',context)
+    
+    context={
+        'profile':profile
+    }
+    
+    return render(request,'profile.html',context)
