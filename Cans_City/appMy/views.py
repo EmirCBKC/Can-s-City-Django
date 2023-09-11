@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from .models import *
 from django.db.models import Q
+from django.contrib.auth import login,logout,authenticate
 
 # Create your views here.
 
@@ -79,6 +80,10 @@ def xbox(request):
 
     return render(request, 'xbox.html', context)
 
+def profile(request):
+    
+    return render(request,'profile.html')
+
 def register(request):
     if request.method=="POST":
         name=request.POST["name"]
@@ -114,3 +119,27 @@ def register(request):
             return render(request,'user/register.html',context)
     
     return render(request,'user/register.html')
+
+def loginn(request):
+    if request.method=="POST":
+        userName=request.POST["userName"]
+        password=request.POST["password"]
+        
+        user=authenticate(request,username=userName,password=password)
+        
+        if user is not None:
+            login(request,user)
+            return redirect("/")
+        else:
+            context={
+                'information':'The username or password you entered is incorrect, try again!'
+            }
+            
+            return render(request,'user/login.html',context)
+        
+    return render(request,'user/login.html')
+
+def logoutt(request):
+    logout(request)
+    
+    return redirect('/')

@@ -30,7 +30,7 @@ urlpatterns = [
     path('ps5/', ps5, name="ps5"),
     path('xbox/', xbox, name="xbox"),
     path('register/',register,name='register'),
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('login/',loginn,name='login'),
+    path('logout/',logoutt,name='logout'),
+    path('profile/',profile,name='profile'),
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

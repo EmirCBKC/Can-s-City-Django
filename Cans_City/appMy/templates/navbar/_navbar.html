@@ -3,8 +3,8 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Can's City</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -40,7 +40,7 @@
                     </li>
                 </ul>
             </div>
-            
+
             <div class="basket me-2">
                 <button id="basket" class="btn"><i class="fa-solid fa-basket-shopping fa-2xl"
                         style="color: #00ffff;"></i>
@@ -52,35 +52,41 @@
             </div>
 
             <div class="user-login">
+                {% if request.user.is_authenticated %}
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                {{request.user}}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/profile/">Profile</a></li>
+                                <li><a class="dropdown-item" href="/logout/">Log out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                {% else %}
                 <button id="user" class="btn"><i class="fa-solid fa-user fa-2xl" style="color: #00ffff;"></i>
                 </button>
                 <div class="user-content">
                     <div class="user-login-content d-flex flex-column align-items-center justify-content-center">
-                        <div class="form">
-                            <div class="username d-flex justify-content-end align-items-center">
-                                <label class="me-3" for="">Username: </label>
-                                <input id="username" type="text" placeholder="username">
-                            </div>
-                            <div class="password d-flex justify-content-end align-items-center">
-                                <label class="me-3" for="">Password: </label>
-                                <input id="password" type="password" placeholder="password">
-                            </div>
-                            <div class="remember d-flex justify-content-end">
-                                <label class="me-1" for="">Remember Me</label>
-                                <input id="remember" type="checkbox">
-                            </div>
-                            <div class="form-buttons d-flex justify-content-end">
-                                <button id="login" class="mt-2 me-4">Login</button>
-                                <a href="/register/" class="mt-2 d-flex justify-content-center align-items-center">Register</a>
-                            </div>
+                        <div class="form-buttons d-flex justify-content-end">
+                            <a href="/login/" class="mt-2 d-flex justify-content-center align-items-center">Login</a>
+                            <a href="/register/"
+                                class="mt-2 d-flex justify-content-center align-items-center">Register</a>
                         </div>
-                        <div class="login" style="display: none;">
-                            <h1>WELCOME </h1>
-                        </div>
+                    </div>
+                    </form>
+                    <div class="login" style="display: none;">
+                        <h1>WELCOME </h1>
                     </div>
                 </div>
             </div>
-            
+            {% endif %}
         </div>
-    </nav>
+
+</div>
+</nav>
 </div>
