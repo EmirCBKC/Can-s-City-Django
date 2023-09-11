@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from django.db.models import Q
 
 # Create your views here.
 
@@ -32,6 +33,18 @@ def detail(request, id):
 
 def pc(request):
     pc = Game.objects.filter(platform=1, edition=1)
+    query = request.GET.get("searchInput")
+    low = request.GET.get("low")
+    high = request.GET.get("high")
+
+    if query:
+        pc = pc.filter(Q(title__icontains=query)).distinct
+
+    if low:
+        pc = pc.order_by('-price')
+        
+    if high:
+        pc = pc.order_by('price')
 
     context = {
         'pc': pc,

@@ -12,9 +12,13 @@
     </div>
 
     <div class="pc-filter d-flex justify-content-around align-items-center mt-5 mb-5">
-        <button id="lowPc" class="btn btn-danger">Low Price$</button>
-        <button id="highPc" class="btn btn-danger">High Price$</button>
-        <input id="pc_search" class="text-center" type="text" placeholder="search">
+        <form method="GET">
+            <button id="lowPc" class="btn btn-danger" type="submit" name="low">Low Price$</button>
+            <button id="highPc" class="btn btn-danger" type="submit" name="high">High Price$</button>
+        </form>
+        <form role="search" method="GET">
+            <input id="pc_search" name="searchInput" class="text-center" type="search" placeholder="search">
+        </form>
     </div>
 
     <div class="pc-content p-3">
