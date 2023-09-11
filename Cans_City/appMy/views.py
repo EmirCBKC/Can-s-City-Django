@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import *
 from django.db.models import Q
 
@@ -78,3 +78,39 @@ def xbox(request):
     }
 
     return render(request, 'xbox.html', context)
+
+def register(request):
+    if request.method=="POST":
+        name=request.POST["name"]
+        surName=request.POST["surName"]
+        userName=request.POST["userName"]
+        email=request.POST["email"]
+        password=request.POST["password"]
+        password2=request.POST["password2"]
+        
+        if password==password2:
+            if User.objects.filter(username=userName).exists():
+                context={
+                    'information':'This username is used. Try a different username!'
+                }
+                return render(request,'user/register.html',context)
+            
+            if User.objects.filter(email=email).exists():
+                context={
+                    'information':'This e-mail address is used. Try a different email address!'
+                }
+                return render(request,'user/register.html',context)
+            
+            else:
+                user=User.objects.create_user(first_name=name,last_name=surName,username=userName,email=email,password=password)
+                user.save()
+                pro=Profil(user_id=user.id,profileImg=None)
+                pro.save()
+                return redirect('/')
+        else:
+            context = {
+                'information':'Your password does not match the replay password you entered!'
+            }
+            return render(request,'user/register.html',context)
+    
+    return render(request,'user/register.html')

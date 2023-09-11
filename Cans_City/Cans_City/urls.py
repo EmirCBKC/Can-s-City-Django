@@ -28,7 +28,8 @@ urlpatterns = [
     path('detail/<id>/', detail, name="detail"),
     path('pc/', pc, name="pc"),
     path('ps5/', ps5, name="ps5"),
-    path('xbox/', xbox, name="xbox")
+    path('xbox/', xbox, name="xbox"),
+    path('register/',register,name='register'),
 ]
 
 if settings.DEBUG:

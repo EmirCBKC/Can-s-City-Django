@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -6,12 +7,14 @@ from django.db import models
 class Platform (models.Model):
     title = models.CharField(
         ("Platform"), max_length=50, null=True, blank=True)
+
     def __str__(self) -> str:
         return self.title
 
 
 class Edition (models.Model):
     title = models.CharField(("Edition"), max_length=50, null=True, blank=True)
+
     def __str__(self) -> str:
         return self.title
 
@@ -26,7 +29,8 @@ class Game (models.Model):
         ("Edition Image"), upload_to='background_images/', height_field=None, width_field=None, max_length=None, null=True, blank=True)
     backgroundImage = models.ImageField(
         ("Background Image"), upload_to='background_images/', height_field=None, width_field=None, max_length=None, null=True, blank=True)
-    iframe = models.CharField(("Iframe"), max_length=100, null=True, blank=True)
+    iframe = models.CharField(
+        ("Iframe"), max_length=100, null=True, blank=True)
     leftPng = models.ImageField(("Left Png"), upload_to='background_images/',
                                 height_field=None, width_field=None, max_length=None, null=True, blank=True)
     rightPng = models.ImageField(("Right Png"), upload_to='background_images/',
@@ -38,5 +42,14 @@ class Game (models.Model):
     about = models.CharField(("About"), max_length=200, null=True, blank=True)
     price = models.PositiveIntegerField(
         ("Price"), default=0, null=True, blank=True)
+
     def __str__(self) -> str:
         return str(self.platform) + " - " + self.title + " - " + str(self.edition)
+
+
+class Profil(models.Model):
+    user = models.ForeignKey(User, verbose_name=(
+        "User"), on_delete=models.CASCADE, null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    profileImg = models.ImageField(("Profil Image"), upload_to=None, height_field=None,
+                                   width_field=None, max_length=None, null=True, blank=True)
