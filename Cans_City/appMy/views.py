@@ -33,18 +33,17 @@ def detail(request, id):
 
 def pc(request):
     pc = Game.objects.filter(platform=1, edition=1)
-    low = request.GET.get("low")
-    high = request.GET.get("high")
+    order_by = request.GET.get("order_by")
     query = request.GET.get("searchInput")
 
     if query:
         pc = pc.filter(Q(title__icontains=query)).distinct
 
-    if low:
-        pc = pc.order_by('-price')
-
-    if high:
+    if order_by == "low":
         pc = pc.order_by('price')
+
+    if order_by == "high":
+        pc = pc.order_by('-price')
 
     context = {
         'pc': pc,
