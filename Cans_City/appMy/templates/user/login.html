@@ -4,21 +4,21 @@
 
 {% block body %}
 
-<div class="register-background d-flex justify-content-center flex-column align-items-center">
-    <div class="register-content d-flex flex-column align-items-center">
-        <h1 class="text-center mt-5">Logın Here!</h1>
+<div class="login-background d-flex justify-content-center flex-column align-items-center">
+    <div class="login-content d-flex flex-column align-items-center">
+        <h1 class="text-center mt-5">Login Here!</h1>
         {% if information %}
         <div class="alert alert-danger" role="alert">
             {{information}}
         </div>
         {% endif %}
-        <form class="form" method="POST">
+        <form style="width:50%" class="form d-flex flex-column align-items-center mt-3" method="POST">
             {% csrf_token %}
-            <div class="username d-flex justify-content-end align-items-center">
+            <div class="username mt-2 mb-2 d-flex justify-content-end align-items-center">
                 <label class="me-3" for="username">Username: </label>
                 <input id="username" name="userName" type="text" placeholder="username">
             </div>
-            <div class="password d-flex justify-content-end align-items-center">
+            <div class="password mt-2 mb-2 d-flex justify-content-end align-items-center">
                 <label class="me-3" for="password">Password: </label>
                 <input id="password" name="password" type="password" placeholder="password">
             </div>
@@ -26,8 +26,8 @@
                 <label class="me-1" for="remember">Remember Me</label>
                 <input id="remember" type="checkbox">
             </div>
-            <div class="form-buttons d-flex justify-content-end">
-                <button id="login" type="submit" class="mt-2 me-4">Login</button>
+            <div class="form-buttons mt-2 mb-2 d-flex justify-content-end">
+                <button id="login" type="submit" class="mt-2">Login</button>
             </div>
         </form>
     </div>

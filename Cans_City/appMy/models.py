@@ -51,5 +51,5 @@ class Profil(models.Model):
     user = models.ForeignKey(User, verbose_name=(
         "User"), on_delete=models.CASCADE, null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    profileImg = models.ImageField(("Profil Image"), upload_to=None, height_field=None,
+    profileImg = models.ImageField(("Profil Image"), upload_to='background_images/', height_field=None,
                                    width_field=None, max_length=None, null=True, blank=True)

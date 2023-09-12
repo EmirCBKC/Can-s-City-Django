@@ -1,5 +1,5 @@
 
-//! NAVBAR user and basket click
+//! NAVBAR => user and basket click
 let basket = document.querySelector("#basket");
 let basketContent = document.querySelector(".basket-content");
 basketContent.style.display = "none";
@@ -25,3 +25,10 @@ user.addEventListener("click", () => {
         userContent.style.display = "none";
     }
 });
+
+//! PROFILE => profile edit
+function aktiflestir(){
+    document.querySelectorAll(".edit-profil").forEach((i)=>{i.disabled=false});
+    document.querySelector(".save").style.display="block";
+    document.querySelectorAll(".profile-img-save").forEach((i)=>{i.style.display="block"});
+}

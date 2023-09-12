@@ -56,10 +56,17 @@ def pc(request):
 
 def ps5(request):
     ps5 = Game.objects.filter(platform=2, edition=1)
+    order_by = request.GET.get("order_by")
     query = request.GET.get("searchInput")
 
     if query:
         ps5 = ps5.filter(Q(title__icontains=query)).distinct
+
+    if order_by == "low":
+        ps5 = ps5.order_by('price')
+
+    if order_by == "high":
+        ps5 = ps5.order_by('-price')
 
     context = {
         'ps5': ps5,
@@ -70,10 +77,17 @@ def ps5(request):
 
 def xbox(request):
     xbox = Game.objects.filter(platform=3, edition=1)
+    order_by = request.GET.get("order_by")
     query = request.GET.get("searchInput")
 
     if query:
         xbox = xbox.filter(Q(title__icontains=query)).distinct
+
+    if order_by == "low":
+        xbox = xbox.order_by('price')
+
+    if order_by == "high":
+        xbox = xbox.order_by('-price')
 
     context = {
         'xbox': xbox,
@@ -150,7 +164,7 @@ def profile(request):
     
     profile=Profil.objects.get(user_id=request.user)
     
-    if request.method=="POST" and 'profileImg-btn' in request.POST:
+    if request.method=='POST' and 'profile-img-btn' in request.POST:
         filee=request.FILES.get("image")
         
         if filee:
@@ -163,6 +177,15 @@ def profile(request):
             
             return render(request,'profile.html',context)
     
+    if request.method == "POST" and "save" in request.POST:
+        user = request.user
+        user.username = request.POST['username']
+        user.first_name = request.POST['firstName']
+        user.last_name = request.POST['lastName']
+        user.email = request.POST['email']
+        
+        user.save()
+        
     context={
         'profile':profile
     }

@@ -165,7 +165,7 @@ li a:hover {
     width: 35rem;
     height: 0rem;
     opacity: 0;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.747);
     border: 2px solid #00ffff;
     border-radius: 0px 0px 30px 30px;
     position: absolute;
@@ -208,6 +208,10 @@ form {
 .remember label {
     font-size: 18px;
     color: #00aeae;
+}
+
+.form-buttons{
+    width: 100%;
 }
 
 .form-buttons button {
@@ -415,7 +419,7 @@ form {
 .pc-filter {
     background-color: #000000ad;
     border-radius: 30px;
-    width: 40%;
+    width: 45%;
     height: 10rem;
 }
 
@@ -515,7 +519,7 @@ form {
 .ps5-filter {
     background-color: #4a4a4ab3;
     border-radius: 30px;
-    width: 60%;
+    width: 45%;
     height: 10rem;
 }
 
@@ -614,7 +618,7 @@ form {
 .xbox-filter {
     background-color: #000000b3;
     border-radius: 30px;
-    width: 60%;
+    width: 45%;
     height: 10rem;
 }
 
@@ -860,7 +864,7 @@ iframe {
 /******************************************* PROFILE-CSS-START ************************************************/
 
 .profile-background {
-    background-image: linear-gradient(to left, #0a244f36 20%, rgba(0, 25, 38, 0.878) 97%), url(/main-img/profile/background.png);
+    background-image: linear-gradient(to left, #0a244f36 20%, rgba(0, 25, 38, 0.878) 97%), url(../img/profile/background.png);
     background-position: center;
     background-size: cover;
     width: 100%;
@@ -868,10 +872,9 @@ iframe {
 }
 
 .profile-content {
-    background-color: #4158D0;
-    background-image: linear-gradient(43deg, #010712 0%, #010815e4 46%, #04112996 100%);
+    background-image: linear-gradient(43deg, #010712cc 0%, #010815a2 46%, #04112996 100%);
     border: 2px solid #00ffff;
-    width: 80%;
+    width: 50%;
     height: 40rem;
     border-radius: 30px;
     box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
@@ -1096,6 +1099,33 @@ iframe {
 
 /******************************************* CONTACT-CSS-END ************************************************/
 
+/******************************************* LOGIN-CSS-START ********************************************/
+
+.login-background {
+    background-image: linear-gradient(to top, #4d0a4f36 20%, rgba(0, 25, 38, 0.878) 97%), url(../img/login/background.jpeg);
+    background-position: top;
+    background-size: cover;
+    width: 100%;
+    height: 50rem;
+}
+
+.login-content {
+    width: 40%;
+    height: 30rem;
+    background-image: linear-gradient(43deg, #010712 0%, #04132fe4 46%, #305aa896 100%);
+    border-radius: 20px;
+    border: 1px solid #00ffff;
+    box-shadow: 0px 0px 20px #00ffff;
+}
+
+.login-content h1 {
+    color: white;
+    font-size: 50px;
+    text-shadow: 0px 0px 10px black
+}
+
+/******************************************* LOGIN-CSS-END ********************************************/
+
 /******************************************* REGISTER-CSS-START ********************************************/
 
 .register-background {
@@ -1107,7 +1137,7 @@ iframe {
 }
 
 .register-content {
-    width: 70%;
+    width: 50%;
     height: 50rem;
     background-image: linear-gradient(43deg, #010712 0%, #04132fe4 46%, #305aa896 100%);
     border-radius: 20px;
@@ -1125,21 +1155,13 @@ iframe {
     width: 100%;
 }
 
-.register-name label,
-.register-surname label,
-.register-username label,
-.register-password label,
-.register-age label {
+.register-info label {
     color: #00ffff;
     font-size: 30px;
-    margin-right: 2rem;
 }
 
-.register-name input,
-.register-surname input,
-.register-username input,
-.register-password input,
-.register-age input {
+.register-info input {
+    width: 100%;
     color: #00ffff;
     border-radius: 5px;
     background-color: #000516;
@@ -1250,12 +1272,12 @@ footer h2 {
     }
 
     50% {
-        height: 17rem;
+        height: 6rem;
         opacity: 1;
     }
 
     100% {
-        height: 17rem;
+        height: 6rem;
         opacity: 1;
     }
 }

@@ -6,53 +6,81 @@
 
 <div class="profile-background d-flex justify-content-center flex-column align-items-center">
     <div class="profile-content d-flex flex-column align-items-center">
-        <form action="" method="POST" enctype="multipart/form-data">
+        <h3 class="mt-4" style="color: #00ffff;">{{request.user.first_name}} {{request.user.last_name}}</h3>
+        {% if profile.profileImg %}
+        <img src="{{ profile.profileImg.url }}" alt="Profile Image" class="img-fluid img-thumbnail mt-4 mb-2"
+            style="width: 300px; height:200px; border-radius: 5px;
+            background-color: #000516;
+            border: 2px solid #00ffff;
+            color: #00ffff;">
+        {% else %}
+        <img src="" alt="Profile Image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 500px; height:500px">
+        {% endif %}
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <h5>{{request.user.first_name}} {{request.user.last_name}}</h5>
-            {% if profil.profileImg %}
-            <img src="{{ profil.profileImg.url }}" alt="Profile Image"
-                class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
-            {% else %}
-            <img src="" alt="Profile Image"
-                class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
-            {% endif %}
             <div class="d-flex justify-content-center align-items-center">
-                <input class="prf_img" name="image" type="file"
-                    style="display: none; z-index: 1; background: transparent;">
-                <button class="prf_img" id="img-save" style="display: none;"
-                    name="profil-img-btn" type="submit" class="btn btn-success">Save</button>
+                <input class="profile-img-save" name="image" type="file"
+                    style="display: none; width:40%;
+                    color: #00ffff; background: transparent;">
+                <button class="profile-img-save" id="img-save" style="display: none; border-radius: 5px;
+                background-color: #000516;
+                border: 2px solid #00ffff;
+                color: #00ffff;" name="profile-img-btn"
+                    type="submit" class="btn btn-success">Save</button>
             </div>
         </form>
-        <button type="button" class="btn btn-warning mt-2" style="width: 40%;"
-            data-mdb-ripple-color="dark" style="z-index: 1;" id="profil-btn"
-            onclick="aktiflestir()">
-            Profili Düzenle
+
+        <button type="button" style="border-radius: 5px;
+        background-color: #000516;
+        border: 2px solid #00ffff;
+        color: #00ffff;" class="btn mt-2 mb-4" style="width: 20%;" data-mdb-ripple-color="dark"
+            id="profil-btn" onclick="aktiflestir()">
+            Edit Profile
         </button>
-        <form class="p-4" method="POST" style="background-color: #f8f9fa;">
+
+        <form class="p-4 mb-3" method="POST"
+            style="background-color:#000516ad; border: 2px solid #00ffff; border-radius: 30px;">
             {% csrf_token %}
-            <div class="row">
+            <div class="row justify-content-between">
                 <div class="col-6 d-flex justify-content-between">
-                    <label for="username">Username</label>
-                    <input class="edit-profil" type="text" name="username" id="username" disabled
-                        value="{{request.user.username}}">
-                </div>
-                <div class="col-6">
-                    <label class="me-4" for="firstName">Name</label>
-                    <input class="edit-profil" type="text" name="firstName" id="firstName" disabled
+                    <label style="color: #00ffff; font-size:20px" class="me-4" for="firstName">Name</label>
+                    <input style="border-radius: 5px;
+                    background-color: #000516;
+                    border: 2px solid #00ffff;
+                    color: #00ffff;" class="edit-profil" type="text" name="firstName" id="firstName" disabled
                         value="{{request.user.first_name}}">
                 </div>
-                <div class="col-6 mt-4 d-flex justify-content-between">
-                    <label for="lastName">Surname</label>
-                    <input class="edit-profil" type="text" name="lastName" id="lastName" disabled
+                <div class="col-6">
+                    <label style="color: #00ffff; font-size:20px" for="lastName">Surname</label>
+                    <input style="border-radius: 5px;
+                    background-color: #000516;
+                    border: 2px solid #00ffff;
+                    color: #00ffff;" class="edit-profil" type="text" name="lastName" id="lastName" disabled
                         value="{{request.user.last_name}}">
                 </div>
-                <div class="col-6 mt-4">
-                    <label for="email">E-mail</label>
-                    <input class="edit-profil" type="email" name="email" id="email" disabled
+                <div class="col-6 mt-4 d-flex justify-content-between">
+                    <label style="color: #00ffff; font-size:20px" for="username">Username</label>
+                    <input style="border-radius: 5px;
+                    background-color: #000516;
+                    border: 2px solid #00ffff;
+                    color: #00ffff;" class="edit-profil" type="text" name="username" id="username" disabled
+                        value="{{request.user.username}}">
+                </div>
+                <div class="col-6 mt-4 d-flex">
+                    <label style="color: #00ffff; font-size:20px" for="email">E-mail</label>
+                    <input style="border-radius: 5px;
+                    background-color: #000516;
+                    border: 2px solid #00ffff;
+                    color: #00ffff;" class="edit-profil ms-4" type="email" name="email" id="emaill" disabled
                         value="{{request.user.email}}">
                 </div>
+                <div class="col-12 d-flex justify-content-end">
+                    <button type="submit" class="save btn btn-dark mt-4 me-3" name="save" style="display: none; border-radius: 5px;
+                    background-color: #000516;
+                    border: 2px solid #00ffff;
+                    color: #00ffff;">Save</button>
+                </div>
             </div>
-            <button type="submit" class="btn btn-dark mt-4" name="save" style="display: none;">Save</button>
         </form>
     </div>
 </div>
