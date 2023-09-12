@@ -191,3 +191,32 @@ def profile(request):
     }
     
     return render(request,'profile.html',context)
+
+def community(request):
+    comment=Comment.objects.all()
+    game=Game.objects.all()
+    
+    if request.method=="POST":
+        comment=request.POST["commentText"]
+        com=Comment(comment=comment,user=request.user)
+    
+    context={
+        'comment':comment,
+        'game':game
+    }
+    
+    return render(request,'community.html',context)
+
+def liked(request,id):
+    game=Game.objects.get(pk=id)
+
+    if request.user in game.likes.all():
+        game.likes.remove(request.user)
+
+    else:
+        game.likes.add(request.user)
+
+    game.likes_count=game.likes.count()
+    game.save()
+    
+    return redirect('/')

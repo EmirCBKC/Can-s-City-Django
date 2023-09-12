@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block body %}
+
+<div class="community-background d-flex justify-content-center">
+    <div class="community-content">
+        <div class="community-row justify-content-center row mt-4">
+            <div
+                class="community-info d-flex justify-content-center col-xxl-6 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="community-form d-flex flex-column justify-content-center align-items-center">
+                    <div class="input d-flex flex-column align-items-center">
+                        {% for i in comment %}
+                        <img src="{{i.user.profil.profileImg.url}}" alt="Profile Image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 100px; height:100px; border-radius: 5px;
+                        background-color: #000516;
+                        border: 2px solid #00ffff;
+                        color: #00ffff;">
+                        <h2>{{i.user.first_name}} {{i.user.last_name}}</h2>
+                        <h4>{{i.gameComment}}</h4>
+                        <p>{{i.comment}}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <form method="POST">
+                            {% csrf_token %}
+                            <label>Comment:</label>
+                            <select name="Game">
+                                {% for game in game %}
+                                <option value={{game.id}}>{{game.title}} - {{game.edition}}</option>
+                                {% endfor %}
+                            </select>
+                            <input type="text" name="commentText">
+                            <button type="submit" class="btn btn-warning">Submit</button>
+                        </form> -->
+
+{% endblock body %}

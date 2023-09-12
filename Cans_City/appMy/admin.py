@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(Platform)
 admin.site.register(Edition)
 admin.site.register(Game)
+admin.site.register(Comment)

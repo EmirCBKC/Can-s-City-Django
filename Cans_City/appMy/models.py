@@ -42,9 +42,27 @@ class Game (models.Model):
     about = models.CharField(("About"), max_length=200, null=True, blank=True)
     price = models.PositiveIntegerField(
         ("Price"), default=0, null=True, blank=True)
+    likes = models.ManyToManyField(User, related_name=("liked_games"))
+    likes_count = models.PositiveIntegerField(default=0)
+
+    def __str__(self) -> str:
+        return self.title
 
     def __str__(self) -> str:
         return str(self.platform) + " - " + self.title + " - " + str(self.edition)
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, verbose_name=(
+        "User"), on_delete=models.CASCADE, null=True, blank=True)
+    gameComment = models.ForeignKey(Game, verbose_name=(
+        "Game Comment"), on_delete=models.CASCADE, null=True, blank=True)
+    comment = models.TextField(("Comment"))
+    commentTime = models.DateTimeField(
+        (""), auto_now=False, auto_now_add=True, null=True, blank=True)
+
+    def __str__(self) -> str:
+        return str(self.user) + " - " + str(self.gameComment)
 
 
 class Profil(models.Model):

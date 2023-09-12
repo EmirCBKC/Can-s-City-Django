@@ -33,4 +33,6 @@ urlpatterns = [
     path('login/',loginn,name='login'),
     path('logout/',logoutt,name='logout'),
     path('profile/',profile,name='profile'),
+    path('community/',community,name='community'),
+    path('like/<id>/',liked,name='like'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
