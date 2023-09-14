@@ -227,9 +227,18 @@ def community(request):
     game=Game.objects.all()
     basketGame=Game.objects.all()
     
-    if request.method=="POST":
-        comment=request.POST["commentText"]
-        com=Comment(comment=comment,user=request.user)
+    if request.method == "POST":
+        comment_text = request.POST.get("commentText")
+        game_id = request.POST.get("game")  # Seçilen oyunun ID'sini alın
+        if comment_text and game_id:
+            # Seçilen oyunu veritabanından alın
+            game = Game.objects.get(id=game_id)
+            # Yeni bir yorum oluşturun ve veritabanına kaydedin
+            comment = Comment(comment=comment_text, user=request.user, gameComment=game)
+            comment.save()
+
+            # Yorumu oluşturduktan sonra, kullanıcıyı aynı sayfaya yönlendirin veya başka bir sayfaya yönlendirin
+            return redirect('community')  # community adlı görünüme yönlendirme yapabilirsiniz
     
     context={
         'comment':comment,
