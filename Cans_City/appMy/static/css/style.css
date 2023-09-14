@@ -898,7 +898,7 @@ iframe {
 /******************************************* COMPLETE-ORDER-CSS-START ************************************************/
 
 .complete-order-background {
-    background-image: linear-gradient(to top, #001231c4 20%, rgba(0, 25, 38, 0.878) 97%), url(/main-img/complete-order/background.jpg);
+    background-image: linear-gradient(to top, #001231c4 20%, rgba(0, 25, 38, 0.878) 97%), url(../img/complete-order/background.jpg);
     background-position: bottom;
     background-size: cover;
     width: 100%;
