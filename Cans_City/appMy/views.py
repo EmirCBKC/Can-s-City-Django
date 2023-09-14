@@ -8,26 +8,43 @@ from django.contrib.auth.decorators import login_required
 
 
 def home(request):
-    return render(request, 'home.html')
+    basketGame=Game.objects.all()
+    
+    context={
+        'basketGame':basketGame
+    }
+    return render(request, 'home.html', context)
 
 
 def about(request):
-    return render(request, 'about.html')
+    basketGame=Game.objects.all()
+    
+    context={
+        'basketGame':basketGame
+    }
+    return render(request, 'about.html', context)
 
 
 def contact(request):
-    return render(request, 'contact.html')
+    basketGame=Game.objects.all()
+    
+    context={
+        'basketGame':basketGame
+    }
+    return render(request, 'contact.html', context)
 
 
 def detail(request, id):
     game = Game.objects.get(id=id)
     deluxe = Game.objects.get(title=game.title, edition=2)
     ultimate = Game.objects.get(title=game.title, edition=3)
+    basketGame=Game.objects.all()
 
     context = {
         'game': game,
         'deluxe': deluxe,
-        'ultimate': ultimate
+        'ultimate': ultimate,
+        'basketGame':basketGame
     }
 
     return render(request, 'detail.html', context)
@@ -37,6 +54,7 @@ def pc(request):
     pc = Game.objects.filter(platform=1, edition=1)
     order_by = request.GET.get("order_by")
     query = request.GET.get("searchInput")
+    basketGame=Game.objects.all()
 
     if query:
         pc = pc.filter(Q(title__icontains=query)).distinct
@@ -49,6 +67,7 @@ def pc(request):
 
     context = {
         'pc': pc,
+        'basketGame':basketGame
     }
 
     return render(request, 'pc.html', context)
@@ -58,6 +77,7 @@ def ps5(request):
     ps5 = Game.objects.filter(platform=2, edition=1)
     order_by = request.GET.get("order_by")
     query = request.GET.get("searchInput")
+    basketGame=Game.objects.all()
 
     if query:
         ps5 = ps5.filter(Q(title__icontains=query)).distinct
@@ -70,6 +90,7 @@ def ps5(request):
 
     context = {
         'ps5': ps5,
+        'basketGame':basketGame
     }
 
     return render(request, 'ps5.html', context)
@@ -79,6 +100,7 @@ def xbox(request):
     xbox = Game.objects.filter(platform=3, edition=1)
     order_by = request.GET.get("order_by")
     query = request.GET.get("searchInput")
+    basketGame=Game.objects.all()
 
     if query:
         xbox = xbox.filter(Q(title__icontains=query)).distinct
@@ -91,6 +113,7 @@ def xbox(request):
 
     context = {
         'xbox': xbox,
+        'basketGame':basketGame
     }
 
     return render(request, 'xbox.html', context)
@@ -163,6 +186,7 @@ def logoutt(request):
 def profile(request):
     
     profile=Profil.objects.get(user_id=request.user)
+    basketGame=Game.objects.all()
     
     if request.method=='POST' and 'profile-img-btn' in request.POST:
         filee=request.FILES.get("image")
@@ -187,7 +211,8 @@ def profile(request):
         user.save()
         
     context={
-        'profile':profile
+        'profile':profile,
+        'basketGame':basketGame
     }
     
     return render(request,'profile.html',context)
@@ -195,6 +220,7 @@ def profile(request):
 def community(request):
     comment=Comment.objects.all()
     game=Game.objects.all()
+    basketGame=Game.objects.all()
     
     if request.method=="POST":
         comment=request.POST["commentText"]
@@ -202,7 +228,8 @@ def community(request):
     
     context={
         'comment':comment,
-        'game':game
+        'game':game,
+        'basketGame':basketGame
     }
     
     return render(request,'community.html',context)
@@ -220,3 +247,26 @@ def liked(request,id):
     game.save()
     
     return redirect('/')
+
+def basket(request,id):
+    game=Game.objects.get(pk=id)
+
+    if request.user in game.basket.all():
+        game.basket.remove(request.user)
+
+    else:
+        game.basket.add(request.user)
+
+    game.basket_amount=game.basket.count()
+    game.save()
+    
+    return redirect('/')
+
+
+def completeOrder(request):
+    basketGame=Game.objects.all()
+    
+    context={
+        'basketGame':basketGame
+    }
+    return render(request, 'completeOrder.html', context)

@@ -46,8 +46,29 @@
                         style="color: #00ffff;"></i>
                 </button>
                 <div id="basket" class="basket-content">
-                    <div class="order-button d-flex align-items-center justify-content-center">
+                    {% for game in basketGame %}
+                    {% if game.basket_amount %}
+                    <div class="basket-game m-auto mt-3 p-2 row">
+                        <div class="basket-left col-xxl-4 col-xl-4" style="background-image: url({{game.editionImage.url}});
+                            background-position: top;
+                            background-size: cover;
+                            border-radius: 15px;
+                            border: 2px solid black;">
+                        </div>
+                        <div class="basket-right d-flex flex-column justify-content-center align-items-center col-8">
+                            <h3>{{game.title}}</h3>
+                            <h4>{{game.edition}}</h4>
+                            <h4>${{game.price}} - {{game.basket_amount}}</h4>
+                            <form method="POST" action="{% url 'basket' game.id %}">
+                                {% csrf_token %}
+                                <button id="remove-basket" class="btn btn-danger remove-basket mt-2"
+                                    name="remove-basket">Remove Basket</button>
+                            </form>
+                        </div>
                     </div>
+                    {% endif %}
+                    {% endfor %}
+                    <div class="order-button"><a href="/completeOrder/" class="btn order btn-success mt-2">Complete Order</a></div>
                 </div>
             </div>
 
@@ -68,12 +89,14 @@
                     </ul>
                 </div>
                 {% else %}
-                <button onclick="userClick()" id="user" class="btn"><i class="fa-solid fa-user fa-2xl" style="color: #00ffff;"></i>
+                <button onclick="userClick()" id="user" class="btn"><i class="fa-solid fa-user fa-2xl"
+                        style="color: #00ffff;"></i>
                 </button>
                 <div class="user-content">
                     <div class="user-login-content d-flex justify-content-center">
                         <div class="form-buttons d-flex justify-content-center">
-                            <a href="/login/" class="mt-2 me-2 mb-2 d-flex justify-content-center align-items-center">Login</a>
+                            <a href="/login/"
+                                class="mt-2 me-2 mb-2 d-flex justify-content-center align-items-center">Login</a>
                             <a href="/register/"
                                 class="mt-2 ms-2 mb-2 d-flex justify-content-center align-items-center">Register</a>
                         </div>

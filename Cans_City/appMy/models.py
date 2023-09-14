@@ -44,6 +44,8 @@ class Game (models.Model):
         ("Price"), default=0, null=True, blank=True)
     likes = models.ManyToManyField(User, related_name=("liked_games"))
     likes_count = models.PositiveIntegerField(default=0)
+    basket = models.ManyToManyField(User, related_name=("basket_games"))
+    basket_amount = models.PositiveIntegerField(default=0)
 
     def __str__(self) -> str:
         return self.title
@@ -71,3 +73,5 @@ class Profil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     profileImg = models.ImageField(("Profil Image"), upload_to='background_images/', height_field=None,
                                    width_field=None, max_length=None, null=True, blank=True)
+    
+

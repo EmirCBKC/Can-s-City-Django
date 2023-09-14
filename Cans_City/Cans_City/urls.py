@@ -35,4 +35,6 @@ urlpatterns = [
     path('profile/',profile,name='profile'),
     path('community/',community,name='community'),
     path('like/<id>/',liked,name='like'),
+    path('basket/<id>/',basket,name='basket'),
+    path('completeOrder/',completeOrder,name='completeOrder'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

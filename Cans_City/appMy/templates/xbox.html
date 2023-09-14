@@ -31,7 +31,10 @@
                         <h1 class="text-center mt-2">{{game.title}}</h1>
                         <h2 class="text-center price mt-2"></h2>
                         <a href="/detail/{{game.id}}/" class="btn btn-light mt-2">Go Detail</a>
-                        <button id="" class="add-basket mt-2">Add Basket</button>
+                        <form method="POST" action="{% url 'basket' game.id %}">
+                            {% csrf_token %}
+                            <button id="add-basket" class="add-basket mt-2" name="add-basket">Add Basket</button>
+                        </form>
                     </div>
                 </div>
             </div>

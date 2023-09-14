@@ -902,7 +902,7 @@ iframe {
     background-position: bottom;
     background-size: cover;
     width: 100%;
-    height: 100rem;
+    height: auto;
 }
 
 .complete-order-content {
