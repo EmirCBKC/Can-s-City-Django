@@ -187,6 +187,9 @@ def profile(request):
     
     profile=Profil.objects.get(user_id=request.user)
     basketGame=Game.objects.all()
+    game=Game.objects.all()
+    user = User.objects.get(username=request.user)
+    liked_games = user.liked_games.all()
     
     if request.method=='POST' and 'profile-img-btn' in request.POST:
         filee=request.FILES.get("image")
@@ -212,7 +215,9 @@ def profile(request):
         
     context={
         'profile':profile,
-        'basketGame':basketGame
+        'basketGame':basketGame,
+        'game':game,
+        'liked_games':liked_games
     }
     
     return render(request,'profile.html',context)

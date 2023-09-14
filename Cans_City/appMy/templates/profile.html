@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="profile-background d-flex justify-content-center flex-column align-items-center">
+<div class="profile-background d-flex justify-content-around align-items-center">
     <div class="profile-content d-flex flex-column align-items-center">
         <h3 class="mt-4" style="color: #00ffff;">{{request.user.first_name}} {{request.user.last_name}}</h3>
         {% if profile.profileImg %}
@@ -83,7 +83,35 @@
             </div>
         </form>
     </div>
-</div>
+    
+    <div class="favourites-content d-flex flex-column align-items-center">
+        <h3 class="mt-4" style="color: #00ffff;"><u>Favourites</u></h3>
+        {% for game in liked_games %}
+        <div class="row" style="width:90%">
+            <div class="col-3 d-flex justify-content-center align-items-center">
+                <img src="{{ game.editionImage.url }}" alt="Profile Image" class="img-fluid img-thumbnail mt-4 mb-2"
+            style="width: 150px; height:150px; border-radius: 5px;
+            background-color: #000516;
+            border: 2px solid #00ffff;
+            color: #00ffff;">
+            </div>
+            <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+                <h4 class="text-center" style="color: #00ffff;">{{game.platform}} {{game.title}} {{game.edition}}</h4>
+                <h5 style="color: #00ffff;">${{game.price}}</h5>
+                <a href="/detail/{{game.id}}/" class="btn profile-detail mt-2">Go Detail</a>
+            </div>
+            <div class="col-2 d-flex justify-content-center align-items-center">
+                <form class="text-center w-100" action="{% url 'like' game.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn" style="color: #00ffff; font-size:20px;">
+                        Remove Favourites
+                        <i class="fa-solid fa-star fa-2xl" style="margin-top: 2rem;"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock body %}

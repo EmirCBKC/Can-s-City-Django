@@ -29,9 +29,21 @@
                     <div class="p-4 d-flex flex-column align-items-center">
                         <img src="{{game.editionImage.url}}" alt="Edition Image" width="100%" height="400px">
                         <h1 class="text-center mt-2">{{game.title}}</h1>
-                        <h2 class="text-center price mt-2"></h2>
-                        <a href="/detail/{{game.id}}/" class="btn btn-light mt-2">Go Detail</a>
-                        <form method="POST" action="{% url 'basket' game.id %}">
+                        <form class="text-center w-100" action="{% url 'like' game.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn" style="color: #00ffff; font-size:20px;">
+                                {% if game.likes_count %}
+                                Remove Favourites
+                                <i class="fa-solid fa-star fa-2xl"></i>
+                                {% else %}
+                                Add Favourites
+                                <i class="fa-regular fa-star fa-2xl"></i>
+                                {% endif %}
+                            </button>
+                        </form>
+                        <h2 class="text-center price mt-2">${{game.price}}</h2>
+                        <a href="/detail/{{game.id}}/" class="btn mt-2">Go Detail</a>
+                        <form class="d-flex justify-content-center" method="POST" action="{% url 'basket' game.id %}">
                             {% csrf_token %}
                             <button id="add-basket" class="add-basket mt-2" name="add-basket">Add Basket</button>
                         </form>
