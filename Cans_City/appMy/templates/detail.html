@@ -80,8 +80,10 @@
                                         minima porro tempore.</li>
                                 </ul>
                                 <h2 class="text-center price mt-2">${{game.price}}</h2>
-                                <button id="{{game.id}}" class="add-basket mt-2"
-                                    value="${element.edition.game_name}">Add Basket</button>
+                                <form class="d-flex justify-content-center" method="POST" action="{% url 'basket' game.id %}">
+                                    {% csrf_token %}
+                                    <button id="add-basket" class="add-basket mt-2" name="add-basket">Add Basket</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -108,8 +110,10 @@
                                         minima porro tempore.</li>
                                 </ul>
                                 <h2 class="text-center price mt-2">${{deluxe.price}}</h2>
-                                <button id="{{game.id}}" class="add-basket mt-2"
-                                    value="${element.edition.game_name}">Add Basket</button>
+                                <form class="d-flex justify-content-center" method="POST" action="{% url 'basket' deluxe.id %}">
+                                    {% csrf_token %}
+                                    <button id="add-basket" class="add-basket mt-2" name="add-basket">Add Basket</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -136,8 +140,10 @@
                                         minima porro tempore.</li>
                                 </ul>
                                 <h2 class="text-center price mt-2">${{ultimate.price}}</h2>
-                                <button id="{{game.id}}" class="add-basket mt-2"
-                                    value="${element.edition.game_name}">Add Basket</button>
+                                <form class="d-flex justify-content-center" method="POST" action="{% url 'basket' ultimate.id %}">
+                                    {% csrf_token %}
+                                    <button id="add-basket" class="add-basket mt-2" name="add-basket">Add Basket</button>
+                                </form>
                             </div>
                         </div>
                     </div>

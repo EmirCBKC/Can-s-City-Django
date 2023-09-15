@@ -1118,7 +1118,7 @@ iframe {
 /******************************************* COMMUNITY-CSS-START ************************************************/
 
 .community-background {
-    background-image: url(../img/contact/background.jpg);
+    background-image: url(../img/community/background.jpeg);
     background-position: bottom;
     background-size: cover;
     width: 100%;
@@ -1126,6 +1126,7 @@ iframe {
 }
 
 .community-content{
+    overflow: auto;
     margin-top: 10rem;
     margin-bottom: 10rem;
     width: 90%;
@@ -1154,6 +1155,49 @@ iframe {
 
 .community-form label {
     font-size: 40px;
+    color: #00ffff;
+}
+
+.add-comment{
+    width: 40%;
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #010712 0%, #010815e4 46%, #04112996 100%);
+    border: 2px solid #00ffff;
+    border-radius: 20px;
+}
+
+.not-login{
+    width: 40%;
+    border: 2px solid #00ffff;
+    border-radius: 20px;
+    color: #00ffff;
+}
+
+.user-comment{
+    width: 100%;
+    background-color: #4158D2;
+    background-image: linear-gradient(43deg, #010712 0%, #010815e4 46%, #04112996 100%);
+    border: 2px solid #00ffff;
+    border-radius: 20px;
+}
+
+.add-comment label,
+.add-comment h2{
+    color: #00ffff;
+}
+
+.add-comment button,
+.add-comment select,
+.add-comment option,
+.add-comment textarea{
+    background-color: #010712;
+    border: 2px solid #00ffff;
+    color: #00ffff;
+}
+
+.add-comment button:hover{
+    background-color: #4158D0;
+    border: 2px solid #010712;
     color: #00ffff;
 }
 
